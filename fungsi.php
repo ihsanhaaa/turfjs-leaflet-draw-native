@@ -1,6 +1,6 @@
 <?php 
 // Koneksi ke database
-$conn = mysqli_connect("localhost", "root", "", "leaflet-draw-native");
+$conn = mysqli_connect("localhost", "root", "", "turfjs-leaflet-draw-native");
 
 function query($query) {
 	global $conn;
@@ -17,11 +17,17 @@ function tambah($data) {
 	// ambil data dari tiap elemen
 	$deskripsi = htmlspecialchars($data["deskripsi"]);
 	$geojson = $data["geojson"];
+	$tipe_geojson = $data["tipe_geojson"];
+	$panjang = $data["panjang"];
+	$lebar = $data["lebar"];
+	$radius = $data["radius"];
+	$luas_lingkaran = $data["luas_lingkaran"];
+	$panjang_polyline = $data["panjang_polyline"];
 
 	// query insert data
-	$query = "INSERT INTO maps 
+	$query = "INSERT INTO maps
 				VALUES
-				('', '$deskripsi', '$geojson')
+				('', '$deskripsi', '$geojson', '$tipe_geojson', '$panjang', '$lebar', '$radius', '$luas_lingkaran', '$panjang_polyline')
 			";
 	mysqli_query($conn, $query);
 
@@ -44,11 +50,23 @@ function ubah($data) {
 	$id = $data["id"];
 	$deskripsi = htmlspecialchars($data["deskripsi"]);
 	$geojson = $data["geojson"];
+	$tipe_geojson = $data["tipe_geojson"];
+	$panjang = $data["panjang"];
+	$lebar = $data["lebar"];
+	$radius = $data["radius"];
+	$luas_lingkaran = $data["luas_lingkaran"];
+	$panjang_polyline = $data["panjang_polyline"];
 
 	// query insert data
 	$query = "UPDATE maps SET
 				deskripsi = '$deskripsi',
-				geojson = '$geojson'
+				geojson = '$geojson',
+				tipe_geojson = '$tipe_geojson',
+				panjang = '$panjang',
+				lebar = '$lebar',
+				radius = '$radius',
+				luas_lingkaran = '$luas_lingkaran',
+				panjang_polyline = '$panjang_polyline'
 				WHERE id = $id
 			";
 	mysqli_query($conn, $query);
